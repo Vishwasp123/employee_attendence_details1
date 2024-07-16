@@ -1,0 +1,15 @@
+<div class="card">
+  <h5 class="card-title">Company Details</h5>
+  <% @companies.each do |company| %>
+    <div class="card-body"> 
+      <p class="card-text"><%= company.name %></p>
+      <p class="card-text"><%= company.latitude %></p>
+      <p class="card-text"><%= company.longitude %></p> 
+      <p class="card-text"><%= company.radius %></p>
+      <button type="button" class="btn btn-primary" data-mdb-ripple-init>Button</button>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "Employees" , employees_path , class:"btn btn-primary" %>
+

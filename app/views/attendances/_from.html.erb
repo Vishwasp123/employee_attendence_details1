@@ -1,0 +1,41 @@
+<%= form_with model: @attendence do |from| %>
+	<div>
+		<%= form.lable :employee_id %>
+		<%= form.text :employee_id %>
+		<% @attendence.errors.full_messages_for(:employee_id).each do |message| %>
+		<div ><%= message %></div>
+		<% end %>
+	</div>
+	<div>
+		<%= form.label :date %>
+		<%= form.date :date %>
+		<% @attendence.errors.full_messages_for(:date).each do |message| %>
+			<div><%= message %></div>
+		<% end %>
+	</div>
+
+	<div >
+		<%= form.label :check_in_time %>
+		<%= form.datetime :check_in_time %>
+		<% @attendence.errors.full_messages_for(:check_in_time).each do |message| %>
+			<div><%= message %></div>
+		<% end %>
+	</div>
+
+	<div >
+		<%= form.label :check_out_time %>
+		<%= form_date_time :check_out_time %>
+		<% @attendence.errors.full_messages_for(:check_out_time).errors do |message| %>
+			<div><%= message %>
+		<% end %>
+	</div>
+
+	<div>
+		<%= form.label :status %>
+		<%= form.text :status %>
+		<% @attendence.errors.full_messages_for(:status).errors do |message| %>
+			<div><%= message %>
+		<% end %>
+	</div>
+<% end %>
+

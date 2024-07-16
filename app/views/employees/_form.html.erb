@@ -1,0 +1,103 @@
+<%= form_with model: @employee do |from| %>
+	<form>
+	  <div class="row mb-4">
+	    <div class="col">
+	      <div data-mdb-input-init class="form-outline">
+	      	 <% @employee.errors.full_messages_for(:first_name).each do |message| %>
+		 				<div  class="text-danger"><%= message %></div>
+		 			<% end %>
+	        <%= from.text_field :first_name, class:"form-control" %>
+	        <%= from.label :first_name, class:"form-label" %>
+	      </div>
+	    </div>
+	    <div class="col">
+  			<div data-mdb-input-init class="form-outline">
+  			  <% @employee.errors.full_messages_for(:last_name).each do |message| %>
+  			    <div class="text-danger"><%= message %></div>
+  			  <% end %>
+	  		  <%= from.text_field :last_name, class: "form-control" %>
+	  		  <%= from.label :last_name, class: "form-label" %>
+  			</div>
+			</div> 
+	  </div>
+	  <div class="row md-4">
+		  <div class="col">
+	    	<div data-mdb-input-init class="form-outline mb-4">
+	    		<% @employee.errors.full_messages_for(:gender).each do |message| %>
+	    			<div class="text-danger"><%= message %></div>
+	    		<% end %>
+			 	 <%= from.text_field :gender, class:"form-control" %>
+		  	 <%= from.label :gender, class:"form-label" %>
+	  		</div>
+		  </div>
+		  <div class="col">
+		  	<div data-mdb-input-init class="form-outline mb-4">
+		  		<% @employee.errors.full_messages_for(:phone_number).each do |message| %>
+		  			<div class="text-danger"><%= message %></div>
+		  		<% end %>
+			 		<%= from.text_field :phone_number,class:"form-control" %>
+		     <%= from.label :phone_number , class:"form-label" %>
+	 		 </div>
+		  </div>
+		</div>
+
+
+		<div class="row md-4">
+		  <div class="col">
+	    	<div data-mdb-input-init class="form-outline mb-4">
+	    		<% @employee.errors.full_messages_for(:employee_id).each do |message| %>
+	    			<div class="text-danger"><%= message %></div>
+	    		<% end %>
+			 	 <%= from.text_field :employee_id, class:"form-control" %>
+		  	 <%= from.label :employee_id ,	"Employee Id", class:"form-label" %>
+	  		</div>
+		  </div>
+		  <div class="col">
+		  	<div data-mdb-input-init class="form-outline mb-4">
+		  		<% @employee.errors.full_messages_for(:email_address).each do |message| %>
+		  			<div class="text-danger"><%= message %></div>
+		  		<% end %>
+			 		<%= from.text_field :email_address,class:"form-control" %>
+		     <%= from.label :email_address , class:"form-label" %>
+	 		 </div>
+		  </div>
+		</div>
+
+		<div class="row md-4">
+			<div class="col">
+				<div data-mdb-input-init class="form-outline mb-4">
+					<% @employee.errors.full_messages_for(:latitude).each do |message| %>
+						<div class="text-danger"><%= message %></div>
+					<% end %>
+				 	<%= from.text_field :latitude, class:"form-control"%>
+		   		<%= from.label :latitude, class:"form-label" %>
+				</div>
+			</div>
+			<div class="col">
+				<div data-mdb-input-init class="form-outline mb-4">
+					<% @employee.errors.full_messages_for(:longitude).each do |message| %>
+						<div class="text-danger"><%= message %></div>
+					<% end %>
+					<%= from.text_field :longitude, class:"form-control"%>
+	  	 		<%= from.label :longitude, class:"form-label" %>
+	  		</div>
+			</div>
+		</div>
+
+	  <div data-mdb-input-init class="form-outline mb-4"> 
+		  <% @employee.errors.full_messages_for(:address).each do |message| %>
+		 		 <div class="text-danger"><%= message %></div>
+		  <% end %>  
+	 		<%= from.text_field :address ,class:"form-control"%>
+	    <%= from.label :address, class:"form-label" %>
+	  </div>
+
+	 <div >
+  		<%= from.submit "Submit", class:"btn btn-primary btn-block" %> 
+			<%= link_to "Back", employees_path, class:"btn btn-warning" %>
+	 </div>
+	</form>
+<% end %>
+
+
+
