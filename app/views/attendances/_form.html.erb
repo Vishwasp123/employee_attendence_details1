@@ -1,0 +1,59 @@
+<%= form_with(model: [@employee, @attendance], local: true) do |form| %>
+  <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-outline">
+        <%= form.label :employee_id, class: "form-label" %>
+        <%= form.text_field :employee_id, class: "form-control" %>
+        <% @attendance.errors.full_messages_for(:employee_id).each do |message| %>
+          <div class="text-danger"><%= message %></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-outline">
+        <%= form.label :date, class: "form-label" %>
+        <%= form.date_field :date, class: "form-control" %>
+        <% @attendance.errors.full_messages_for(:date).each do |message| %>
+          <div class="text-danger"><%= message %></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+  	<div class="col-md-6 my-4">
+  		<div class="form-outline">
+		    <%= form.label :check_in_time, class:"form-label" %>
+		    <%= form.datetime_select :check_in_time, class:"form-control" %>
+		    <% @attendance.errors.full_messages_for(:check_in_time).each do |message| %>
+		      <div class="text-danger"><%= message %></div>
+		    <% end %>
+	  	</div>
+  	</div>
+  	<div class="col-md-6 my-4">
+  		<div class="form-outline">
+		    <%= form.label :check_out_time, class: "form-label" %>
+		    <%= form.datetime_select :check_out_time, class: "form-control" %>
+		    <% @attendance.errors.full_messages_for(:check_out_time).each do |message| %>
+		      <div class="text-danger"><%= message %></div>
+		    <% end %>
+ 		 </div>
+		</div>
+  </div>
+ 
+
+ 
+  <div>
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+    <% @attendance.errors.full_messages_for(:status).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit class:"btn btn-lg btn-success mt-3" %>
+  </div>
+<% end %>
