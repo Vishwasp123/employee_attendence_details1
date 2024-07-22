@@ -11,8 +11,10 @@ Rails.application.routes.draw do
 
   root "companies#index"
 
-  resources :companies
-  resources :employees  do 
-    resources :attendances
+  resources :companies do  
+    resources :employees  do 
+      resources :attendances
+    end
   end
+
 end

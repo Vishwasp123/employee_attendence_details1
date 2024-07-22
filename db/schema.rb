@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_16_071101) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_21_101324) do
   create_table "attendances", force: :cascade do |t|
     t.integer "employee_id", null: false
     t.date "date"
@@ -19,6 +19,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_16_071101) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["employee_id"], name: "index_attendances_on_employee_id"
   end
 
@@ -39,10 +41,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_16_071101) do
     t.string "phone_number"
     t.string "address"
     t.string "employee_id"
-    t.float "latitude"
-    t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password"
+    t.integer "company_id"
+    t.index ["company_id"], name: "index_employees_on_company_id"
   end
 
   add_foreign_key "attendances", "employees"

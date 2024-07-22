@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <div class="ms-5">
      <%= link_to "Back to company" , companies_path, class:"btn btn-primary" %>
-     <%= link_to "Create employee", new_employee_path, class:"btn btn-warning" %>
+     <%= link_to "Create employee", new_company_employee_path, class:"btn btn-warning" %>
     </div>
     <div class="container ">
          <h5 class="card-title text-center fs-3 mt-4">Employees Details</h5>
@@ -15,9 +15,7 @@
                                 <p class="card-text">Gender:- <%= employee.gender %></p>
                                 <p class="card-text">Email Address:- <%= employee.email_address %></p>
                                 <p class="card-text">Employee Id: <%= employee.employee_id %></p>
-                                <p class="card-text">Latitude:- <%= employee.latitude %></p>
-                                <p class="card-text">Longitude:- <%= employee.longitude %></p>
-                                <%= link_to "Show" , employee_path(employee), class:"btn btn-warning" %>
+                                <%= link_to "Show" , company_employee_path(@company,employee), class:"btn btn-warning" %>
                             </div>
                     </div>
                 </div>

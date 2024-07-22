@@ -1,4 +1,4 @@
-<%= form_with model: @employee do |from| %>
+<%= form_with(model: [@company, @employee]) do |from| %>
 	<form>
 	  <div class="row mb-4">
 	    <div class="col">
@@ -65,36 +65,28 @@
 
 		<div class="row md-4">
 			<div class="col">
-				<div data-mdb-input-init class="form-outline mb-4">
-					<% @employee.errors.full_messages_for(:latitude).each do |message| %>
-						<div class="text-danger"><%= message %></div>
-					<% end %>
-				 	<%= from.text_field :latitude, class:"form-control"%>
-		   		<%= from.label :latitude, class:"form-label" %>
-				</div>
+			  <div data-mdb-input-init class="form-outline mb-4"> 
+				  <% @employee.errors.full_messages_for(:address).each do |message| %>
+				 		 <div class="text-danger"><%= message %></div>
+				  <% end %>  
+			 		<%= from.text_field :address ,class:"form-control"%>
+			    <%= from.label :address, class:"form-label" %>
+			  </div>
 			</div>
 			<div class="col">
-				<div data-mdb-input-init class="form-outline mb-4">
-					<% @employee.errors.full_messages_for(:longitude).each do |message| %>
-						<div class="text-danger"><%= message %></div>
-					<% end %>
-					<%= from.text_field :longitude, class:"form-control"%>
-	  	 		<%= from.label :longitude, class:"form-label" %>
-	  		</div>
+			  <div data-mdb-input-init class="form-outline mb-4"> 
+				  <% @employee.errors.full_messages_for(:password).each do |message| %>
+				 		 <div class="text-danger"><%= message %></div>
+				  <% end %>  
+			 		<%= from.text_field :password ,class:"form-control"%>
+			    <%= from.label :password, class:"form-label" %>
+			  </div>
 			</div>
 		</div>
 
-	  <div data-mdb-input-init class="form-outline mb-4"> 
-		  <% @employee.errors.full_messages_for(:address).each do |message| %>
-		 		 <div class="text-danger"><%= message %></div>
-		  <% end %>  
-	 		<%= from.text_field :address ,class:"form-control"%>
-	    <%= from.label :address, class:"form-label" %>
-	  </div>
-
 	 <div >
   		<%= from.submit "Submit", class:"btn btn-primary btn-block" %> 
-			<%= link_to "Back", employees_path, class:"btn btn-warning" %>
+			<%#= link_to "Back", employees_path, class:"btn btn-warning" %>
 	 </div>
 	</form>
 <% end %>

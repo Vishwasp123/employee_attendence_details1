@@ -1,59 +1,79 @@
-<%= form_with(model: [@employee, @attendance], local: true) do |form| %>
-  <div class="container">
+<%= form_with(model: [@company,@employee, @attendance],html: { data: { turbo: false } } ) do |form| %>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 my-4">
       <div class="form-outline">
-        <%= form.label :employee_id, class: "form-label" %>
-        <%= form.text_field :employee_id, class: "form-control" %>
-        <% @attendance.errors.full_messages_for(:employee_id).each do |message| %>
+        <%= form.label :latitude, class: "form-label" %>
+        <%= form.text_field :latitude, id: "attendance_latitude", value: @latitude, class: "form-control" %>
+        <% @attendance.errors.full_messages_for(:latitude).each do |message| %>
           <div class="text-danger"><%= message %></div>
         <% end %>
       </div>
     </div>
-
-    <div class="col-md-6">
+    <div class="col-md-6 my-4">
       <div class="form-outline">
-        <%= form.label :date, class: "form-label" %>
-        <%= form.date_field :date, class: "form-control" %>
-        <% @attendance.errors.full_messages_for(:date).each do |message| %>
+        <%= form.label :longitude, class: "form-label" %>
+        <%= form.text_field :longitude, id: "attendance_longitude", value: @longitude, class: "form-control" %>
+        <% @attendance.errors.full_messages_for(:longitude).each do |message| %>
           <div class="text-danger"><%= message %></div>
         <% end %>
       </div>
     </div>
-  </div>
-
-  <div class="row">
-  	<div class="col-md-6 my-4">
-  		<div class="form-outline">
-		    <%= form.label :check_in_time, class:"form-label" %>
-		    <%= form.datetime_select :check_in_time, class:"form-control" %>
-		    <% @attendance.errors.full_messages_for(:check_in_time).each do |message| %>
-		      <div class="text-danger"><%= message %></div>
-		    <% end %>
-	  	</div>
-  	</div>
-  	<div class="col-md-6 my-4">
-  		<div class="form-outline">
-		    <%= form.label :check_out_time, class: "form-label" %>
-		    <%= form.datetime_select :check_out_time, class: "form-control" %>
-		    <% @attendance.errors.full_messages_for(:check_out_time).each do |message| %>
-		      <div class="text-danger"><%= message %></div>
-		    <% end %>
- 		 </div>
-		</div>
-  </div>
- 
-
- 
-  <div>
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-    <% @attendance.errors.full_messages_for(:status).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <div>
-    <%= form.submit class:"btn btn-lg btn-success mt-3" %>
+    <div class="col-md-6 my-4">
+      <div class="form-outline">
+        <%= form.label :check_in_time, class: "form-label" %>
+        <%= form.text_field :check_in_time, value: Time.now.strftime("%I:%M %p"), class: "form-control" %>
+        <% @attendance.errors.full_messages_for(:check_in_time).each do |message| %>
+          <div class="text-danger"><%= message %></div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-6 my-4">
+      <div class="form-outline">
+        <%= form.label :check_out_time, class: "form-label" %>
+        <%= form.text_field :check_out_time, class: "form-control" %>
+        <% @attendance.errors.full_messages_for(:check_out_time).each do |message| %>
+          <div class="text-danger"><%= message %></div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-6 my-4">
+      <div class="form-outline">
+        <%= form.submit 'Submit', class: "btn btn-primary" %>
+      </div>
+    </div>
   </div>
 <% end %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (!window.location.hash) {
+      window.location = window.location + '#loaded';
+      window.location.reload();
+    } else {
+      // Set up geolocation
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          document.getElementById('attendance_latitude').value = position.coords.latitude;
+          document.getElementById('attendance_longitude').value = position.coords.longitude;
+        }, function(error) {
+          switch(error.code) {
+            case error.PERMISSION_DENIED:
+              alert("User denied the request for Geolocation.");
+              break;
+            case error.POSITION_UNAVAILABLE:
+              alert("Location information is unavailable.");
+              break;
+            case error.TIMEOUT:
+              alert("The request to get user location timed out.");
+              break;
+            case error.UNKNOWN_ERROR:
+              alert("An unknown error occurred.");
+              break;
+          }
+        });
+      } else {
+        alert('Geolocation is not supported by this browser.');
+      }
+    }
+  });
+</script>

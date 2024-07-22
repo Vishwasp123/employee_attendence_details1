@@ -1,5 +1,6 @@
 class AttendancesController < ApplicationController
   before_action :set_employee
+  before_action :set_company
   before_action :set_attendance, only: %i[show edit update destroy]
 
   def index
@@ -16,18 +17,20 @@ class AttendancesController < ApplicationController
   def edit
   end
 
+  
   def create
     @attendance = @employee.attendances.new(attendance_params)
     if @attendance.save
-      redirect_to employee_attendance_path(@employee, @attendance), notice: "Attendance was successfully created"
+      redirect_to company_employee_attendance_path(@company, @employee, @attendance), notice: 'Attendance was successfully created.'
     else
-      render :new
+      flash[:alert] = @attendance.errors.full_messages.join(', ')
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
     if @attendance.update(attendance_params)
-      redirect_to employee_attendance_path(@employee, @attendance), notice: "Attendance was successfully updated"
+     redirect_to company_employee_attendance_path(@company, @employee, @attendance), notice: 'Attendance was successfully update.'
     else
       render :edit 
     end
@@ -49,6 +52,11 @@ class AttendancesController < ApplicationController
   end
 
   def attendance_params
-    params.require(:attendance).permit(:employee_id, :date, :check_in_time, :check_out_time, :status)
+    params.require(:attendance).permit(:employee_id, :date, :check_in_time, :check_out_time, :status, :latitude, :longitude)
   end
+
+  def set_company
+    @company = Company.find(params[:company_id])
+  end
+
 end

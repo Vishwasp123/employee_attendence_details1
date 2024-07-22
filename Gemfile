@@ -69,3 +69,6 @@ end
 
 gem "cssbundling-rails"
 
+gem 'geocoder'
+
+

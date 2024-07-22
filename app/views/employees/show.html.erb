@@ -3,17 +3,16 @@
     <h5 class="card-title text-center mt-2">Employees Details</h5>
     <div class="card-body">
       <div class="text-center mx- auto">
+      <p class="card-text">Employee Id: <%= @employee.employee_id %></p>
       <p class="card-text">First Name:- <%= @employee.first_name %></p>
       <p class="card-text">Last Name:- <%= @employee.last_name %></p>
       <p class="card-text">Gender:- <%= @employee.gender %></p>
       <p class="card-text">Email Address:- <%= @employee.email_address %></p>
-      <p class="card-text">Employee Id: <%= @employee.employee_id %></p>
-      <p class="card-text">Latitude:- <%= @employee.latitude %></p>
-      <p class="card-text">Longitude:- <%= @employee.longitude %></p>
+      <p class="card-text">Employee password: <%= @employee.password %></p>
       <p>
-        <%= link_to "Edit" , edit_employee_path(@employee), class:"btn btn-warning" %>
-        <%= link_to "Back" , employees_path, class:"btn btn-danger" %>
-        <%= link_to "Attendence", new_employee_attendance_path(@employee), class:"btn btn-primary"%>
+        <%= link_to "Edit" , edit_company_employee_path(@company,@employee), class:"btn btn-warning" %>
+        <%= link_to "Back" , company_employees_path, class:"btn btn-danger" %>
+        <%= link_to "Attendence", company_employee_attendances_path(@company, @employee), class:"btn btn-primary"%>
       </p>
     </div>
   </div>

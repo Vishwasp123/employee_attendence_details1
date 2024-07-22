@@ -1,0 +1,20 @@
+<div class="col-md-12">
+  <div class="col-md-8 mx-auto">
+    <div class="container">
+     <%#= link_to "Employees", employees_path, class: "btn btn-primary my-3" %>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Company Details</h5>
+              <p class="card-text">Company Name:<%= @company.name %></p>
+              <p class="card-text">Latitude: <%= @company.latitude %></p>
+              <p class="card-text">Longitude: <%= @company.longitude %></p>
+              <p class="card-text">Radius: <%= @company.radius %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
